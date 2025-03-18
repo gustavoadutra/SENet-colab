@@ -2,10 +2,10 @@
 
 import torch.nn as nn
 
-import core.net as net
+import net
 
-from model.resnet import ResStemIN, ResStage, GlobalHead
-from model.self_similarity import SSM
+from resnet import ResStemIN, ResStage, GlobalHead
+from self_similarity import SSM
 
 class SENet(nn.Module):
     """ResNet with Self-Similairty Encoding Module model."""
