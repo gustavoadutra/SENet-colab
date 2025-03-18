@@ -2,23 +2,23 @@
 
 import torch.nn as nn
 
-import net
+from . import net
 
-from resnet import ResStemIN, ResStage, GlobalHead
-from self_similarity import SSM
+from .resnet import ResStemIN, ResStage, GlobalHead
+from .self_similarity import SSM
 
 class SENet(nn.Module):
     """ResNet with Self-Similairty Encoding Module model."""
 
-    def __init__(self, cfg_SENet):
+    def __init__(self, RESNET_DEPTH):
         super(SENet, self).__init__()
         print("construct SENet")
-        self.RESNET_DEPTH = cfg_SENet.RESNET_DEPTH
-        self.REDUCTION_DIM = cfg_SENet.REDUCTION_DIM
+        self.RESNET_DEPTH = RESNET_DEPTH
+        self.REDUCTION_DIM = 2048
         
-        self.SSM_MID_DIM = cfg_SENet.SSM.MID_DIM
-        self.UNFOLD_SIZE = cfg_SENet.SSM.UNFOLD_SIZE
-        self.SSE_KERNEL_SIZE = cfg_SENet.SSM.KERNEL_SIZE
+        self.SSM_MID_DIM = 256
+        self.UNFOLD_SIZE = 7
+        self.SSE_KERNEL_SIZE = 3
 
         self._construct()
         self.apply(net.init_weights)
