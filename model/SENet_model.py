@@ -53,3 +53,5 @@ class SENet(nn.Module):
         x = self.head.fc(x4_p)
         return x
 
+    def get_embeddigns(self, x):
+        return self.forward(x)
